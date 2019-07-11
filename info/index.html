@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Java Script Intro</title>
+</head>
+<style>
+	body{
+		background-color: black;
+	}
+	.circle {
+		width: 100px;
+		height: 100px;
+		background-color: red;
+		box-shadow: 10px 10px 40px blue;
+		border-radius: 50%;
+		margin-top: 40%;
+		margin: 0 auto;
+		cursor: pointer;
+	}
+
+	.warrior {
+		position: fixed;
+		bottom: 0;
+		left: 40%;
+		width: 100px;
+		height: 100px;
+		background-color: deeppink;
+		box-shadow: 10px 10px 40px blue;
+	}
+
+	.wrap {
+		background-color: white;
+		width: 400px;
+		height: 400px;
+		border: 10px solid yellow;
+	}
+
+	.innerDiv {
+		background-color: black;
+		width: 150px;
+		height: 150px;
+		
+
+	}
+
+	.light {
+		background: yellow;
+	}
+</style>
+<body>
+	<!-- <div class="circle" onclick = "alert('click')"></div> -->
+	<div class="circle" onclick = "circle_click()">What are fuck bich?</div>
+	<div class="circle">Hello</div>
+	<div class="warrior"></div>
+	<audio id="audio" loop src="mp3/1.mp3"></audio>
+	<a href="http://google.com" class="google">google.com</a>
+
+	<div class="wrap">
+		<div class="innerDiv">
+			
+		</div>
+	</div>
+	<script>
+		let innerDiv = document.querySelector('.innerDiv');
+		innerDiv.addEventListener('click',() => {
+			event.stopPropagation();
+			console.log('click by innerDiv');
+		});
+
+		document.querySelector('.wrap').addEventListener('click', ()=>{
+			console.log('click by wrap div');
+		});
+
+		document.body.addEventListener('click', () => {
+			console.log('click by body');
+		});
+
+
+
+		let link = document.querySelector('.google');
+		link.addEventListener('click', ()=>{
+			event.preventDefault();
+			let response = confirm('Тебе есть 18 bich ?');
+			if (response) {
+				location = 'https://1xbetua.com/';
+			} else {
+				location = 'https://kvgazeta.ru/latest-news/9321-2016-10-27-09-02-05.html';
+			}
+
+		});
+		let bottom = 100;
+		function circle_click() 
+		{
+			// obj.style.height = '600px';
+			// console.log(obj.getAttribute('class'));
+			// console.log(e.type);
+			console.log(event.target.innerText);
+			document.body.classList.toggle('light');
+			let warrior = document.querySelector('.warrior');
+			console.log(warrior.style.bottom.substring(0, 2));
+			warrior.style.width = bottom + 'px';
+			warrior.style.height = bottom + 'px';
+			bottom += 20;
+		}
+
+
+
+		let circle_second = document.querySelector('.circle:nth-child(2)');
+		// circle_second.onclick = circle_click;
+		let audio = document.querySelector('#audio');
+		console.log(audio.src);
+
+		circle_second.addEventListener('mouseover', (e)=>{
+			audio.play();
+		});
+
+		circle_second.addEventListener('mouseover', (e)=>{
+			console.log(event.type);
+		});
+
+		function mouseout_handler() {
+			audio.pause();
+		}
+
+		circle_second.addEventListener('mouseout', mouseout_handler);
+
+		circle_second.removeEventListener('mouseout', mouseout_handler);
+
+		console.log('abc'.charAt(0));
+		console.log('abc'.charCodeAt(0));
+	</script>
+</body>
+</html>

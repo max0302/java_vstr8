@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    body {
+        background-color: black;
+    }
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            cursor: pointer;
+            background-color: deeppink;
+            display: inline-block;
+        }
+        .light {
+            background-color: yellow;
+        }
+        .circle:nth-child(2)  {
+            position: absolute;
+            right: 0;
+            background-color: white;
+        }
+        .audio-block {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100px;
+            height: 100px;
+        }
+        .audio-block img {
+            border-radius: 50%;
+            box-shadow: 20px 20px 70px blue;
+        }
+        .img-shadow {
+            box-shadow: 20px 20px 70px red;
+        }
+    </style>
+</head>
+<body>
+<!--     <div class="circle" onclick="alert('click')">   
+    </div> -->
+    <div class="circle" id = "first" onclick="circle_click(this)"></div>
+    <div class="circle" id = "second"></div>
+    <audio src="mp3/1.mp3" id="audio"></audio>
+    <div class="audio-block">
+        <img src="img/1.jpg" alt="play">
+    </div>
+    <script>
+        function circle_click(obj){
+            let body = document.querySelector('body');
+            body.classList.toggle('light');
+            // console.log(obj.getAttribute('class'));
+            console.log(event.target.getAttribute('id'));
+            // alert('click');
+        }
+
+        let circle_second = document.querySelector('.circle:nth-child(2)');
+        circle_second.onclick = circle_click;
+
+        let timer = null;
+        let music_img = document.querySelector('.audio-block>img');
+        let audio = document.querySelector('#audio');
+        music_img.addEventListener('mouseover', () => {
+           timer = setInterval(()=>{
+           document.body.classList.toggle('light');
+           music_img.classList.toggle('img-shadow');
+        },500);
+            audio.play();
+        });
+        let music_img = document.querySelector('.audio-block>img');
+        music_img.addEventListener('mouseout', () => {
+           clearInterval(timer);
+           audio.pause();
+        });
+    </script>
+</body>
+</html>

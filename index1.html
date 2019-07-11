@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Java Script Intro</title>
+</head>
+
+<body>
+	<label>Enter your name (name can`t contain digits)</label>
+	<br>
+	<input class="input" type="text">
+</body>
+	<script>
+		document.querySelector('.input').addEventListener('keypress', () => {
+			let str = parseInt(event.target.value.charAt(event.target.value.length - 1));
+			if(str>=0 && str<=9){
+				event.target.value = event.target.value.slice(0, event.target.value.length - 1);
+			}
+		});
+	</script>
+</html>
