@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>java vstr 8</title>
+	<style>
+		.task {
+			display: block;
+			padding-bottom: 20px;
+		}
+		.modal_window {
+			position: absolute;
+    		top: 0;
+    		left: 0;
+    		right: 0;
+    		bottom: 0;
+    		background: rgba(0, 0, 0, 0.5);
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    		visibility: hidden;
+		}
+		.modal_content {
+			    padding: 40px;
+    			background: lightblue;
+		}
+		.football {
+			position: relative;
+			margin-top: 40px;
+		}
+
+		/*zad 3*/
+		.football>.football-area {
+			position: absolute;
+			min-width: 100vw;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+		}
+
+		.football>.football-ball {
+			position: absolute;
+			width: 100px;
+			top: 40px;
+			left: 50px;
+			transition: .5s;
+		}
+
+		/*zad 4*/
+		.traffic-wrap {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+			width: 30%;
+		}
+
+		section {
+			border: 2px solid #ccc;
+			padding: 30px;
+			border-radius: 30px;
+
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			margin: 40px;
+		}
+
+		.light {
+			background: rgb(51, 51, 51);
+			width: 90px;
+			height: 90px;
+			border-radius: 50%;
+			margin: 0 20px;
+		}
+
+		#btn-next {
+			width: 150px;
+			height: 40px;
+			background: gray;
+			color: white;
+			border: none;
+			font-size: 17px;
+			cursor: pointer;
+			box-shadow: 0 5px 5px rgb(122, 0, 0);
+			transition: .1s;
+		}
+
+		#btn-next:active {
+			box-shadow: none;
+			margin-top: 5px;
+		}
+
+		#btn-next:focus {
+			border: none;
+			outline:none;
+		}
+
+		.red { background: red; }
+		.yellow { background: yellow; }
+		.green { background: green; }
+
+		/*zad 5*/
+		.books_list {
+			margin-top: 20px;
+			list-style-type: decimal;
+			width: 600px;
+		}
+
+		.books_list-item {
+			font-family: 'Arial', sans-serif;
+			margin-bottom: 10px;
+			font-size: 1.2em;
+			padding: 10px;
+			cursor: pointer;
+		}
+
+		/*zad 6*/
+		.btn-wrap {
+			width: 170px;
+			display: flex;
+			flex-direction: column;
+			margin-top: 60px;
+			justify-content: center;
+		}
+
+		.btn-tooltip {
+			background: #8A53A9;
+			color: #fff;
+			font-family: 'Arial', sans-serif;
+			text-align: center;
+			position: relative;
+			padding: 10px 20px;
+			align-self: center;
+			z-index: 2;
+			margin: 14px;
+			visibility: hidden;
+		}
+
+		.btn-tooltip--up::before {
+			position: absolute;
+
+			top: -10px;
+			left: 50%;
+			transform: translateX(-10%);
+			content: '';
+
+			width: 0;
+			height: 0;
+			border-style: solid;
+			border-width: 0 10px 10px 10px;
+			border-color: transparent transparent #8A53A9 transparent;
+		}
+
+
+		.btn-hovered {
+			height: 50px;
+			background: rgb(17, 147, 207);
+			color: #fff;
+			font-size: 1.1em;
+			border: none;
+			cursor: pointer;
+			box-shadow: 0 5px 5px #888;
+		}
+	</style>
+</head>
+
+<body>
+<!--	 zad 1 -->
+<!--	<div class="task">-->
+<!--		<p>Task 1</p>-->
+<!--		<label>Enter your name (name can`t contain digits)</label>-->
+<!--		<br>-->
+<!--		<input class="input" type="text">-->
+<!--	</div>-->
+
+<!--	 zad 2 -->
+<!--	<div class="task">-->
+<!--		<p>Task 2</p>-->
+<!--		<button class="open">открыть</button>-->
+<!--		<div class="modal_window">-->
+<!--				<div class="modal_content">-->
+<!--					<h3>Hello from Modal Window!</h3>-->
+<!--					<button class="close">закрыть</button>-->
+<!--				</div>-->
+<!--		</div>-->
+<!--	</div>-->
+
+<!-- 	zad 3 -->
+<!--	<div class="football">-->
+<!--        <img class="football-area" src="img/pole.png" alt="">-->
+<!--        <img class="football-ball" src="img/bal.png" alt="">-->
+<!--    </div>-->
+
+<!-- 	zad 4 -->
+<!--		<div class="traffic-wrap">-->
+<!--			<section class="traffic_ligth">-->
+<!--				<div class="light red"></div>-->
+<!--				<div class="light"></div>-->
+<!--				<div class="light"></div>-->
+<!--				<button id="btn-next">Next</button>-->
+<!--			</section>-->
+<!--		</div>-->
+
+<!--		zad 5-->
+<!--		<ol class="books_list">-->
+<!--			<li class="books_list-item">Book 1</li>-->
+<!--			<li class="books_list-item">Book 2</li>-->
+<!--			<li class="books_list-item">Book 3</li>-->
+<!--			<li class="books_list-item">Book 4</li>-->
+<!--			<li class="books_list-item">Book 5</li>-->
+<!--		</ol>-->
+
+<!--		zad 6-->
+			<div class="btn-wrap">
+				<button class="btn-hovered">Hover me</button>
+				<div class="btn-tooltip btn-tooltip--up">Убери</div>
+			</div>
+
+
+</body>
+	<script>
+		// zad 1
+		// document.querySelector('.input').addEventListener('keypress', () => {
+		// 	let str = parseInt(event.target.value.charAt(event.target.value.length - 1));
+		// 	if(str>=0 && str<=9){
+		// 		event.target.value = event.target.value.slice(0, event.target.value.length - 1);
+		// 	}
+		// });
+
+		// zad 2
+		// document.querySelector('.open').addEventListener('click', ()=>{
+		// 	document.querySelector('.modal_window').style.visibility = 'visible';
+		// });
+		// document.querySelector('.close').addEventListener('click', ()=>{
+		// 	document.querySelector('.modal_window').style.visibility = 'hidden';
+		// });
+
+		// zad 3
+		// let area = document.querySelector(".football-area");
+		// let ball = document.querySelector(".football-ball");
+		//
+		// area.addEventListener("click", () => {
+		//
+		//     // get the offset of area regarding the html docuement
+		//     let areaOffset = area.getBoundingClientRect();
+		//     let leftAreaOffset = areaOffset.left;
+		//     let topAreaOffset = areaOffset.top;
+		//
+		//     // put center of ball in place where was click
+		//     ball.style.top = event.clientY - topAreaOffset - ball.height / 2 + "px";
+		//     ball.style.left = event.clientX - leftAreaOffset - ball.width / 2 + "px";
+		// });
+
+		// zad 4
+		// let btnNext = document.querySelector("#btn-next");
+		// let index = 1;
+		//
+		// btnNext.addEventListener("click", () => {
+		// 	let lights = document.querySelectorAll(".light");
+		// 	let colors = ['red', 'yellow', 'green'];
+		//
+		//
+		// 	if (index <= 2) {
+		// 		lights[index].classList.toggle(colors[index]);
+		// 		lights[index - 1].classList.toggle(colors[index - 1]);
+		// 	} else {
+		// 		index = 0;
+		// 		lights[index].classList.toggle(colors[index]);
+		// 		lights[2].classList.toggle(colors[2]);
+		// 	}
+		// 	index++;
+		// });
+
+		// zad 5
+		// let bookItems = document.querySelectorAll(".books_list-item");
+		//
+		// function resetOtherElementsMarking() {
+		// 	bookItems.forEach(elem => {
+		// 		elem.style.background = "transparent";
+		// 	});
+		// }
+		//
+		// bookItems.forEach(elem => {
+		// 	elem.addEventListener("click", () => {
+		// 		resetOtherElementsMarking();
+		// 		event.target.style.background = "#FFA984";
+		// 	});
+		// });
+
+		// zad 6
+		let buttons = document.querySelectorAll(".btn-hovered");
+
+		buttons.forEach(elem => {
+			elem.addEventListener("mouseover", () => {
+
+				let tooltip = document.querySelector(".btn-hovered ~ .btn-tooltip");
+				tooltip.style.visibility = "visible";
+
+			});
+			elem.addEventListener("mouseout", () => {
+				let tooltip = document.querySelector(".btn-hovered ~ .btn-tooltip");
+				tooltip.style.visibility = "hidden";
+			});
+		});
+
+	</script>
+</html>
